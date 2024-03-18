@@ -1,0 +1,1 @@
+## Django web app with submission form, other pages, admin pannel
