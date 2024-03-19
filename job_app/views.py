@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from forms import ApplicationForm
 from .models import Form
+from django.contrib import messages
 
 
 def index(request):
@@ -16,5 +17,7 @@ def index(request):
             # Create object in Model (store data in database table)
             Form.objects.create(first_name=first_name, last_name=last_name,
                                 email=email, date=date, occupation=occupation)
+
+            messages.success(request, "Form submitted successfully!")
 
     return render(request, "index.html")
