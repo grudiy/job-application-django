@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from forms import ApplicationForm
+from .models import Form
+
 
 def index(request):
     if request.method == "POST":
@@ -8,6 +10,11 @@ def index(request):
             first_name = form.cleaned_data["first_name"]
             last_name = form.cleaned_data["last_name"]
             email = form.cleaned_data["email"]
+            date = form.cleaned_data["date"]
             occupation = form.cleaned_data["occupation"]
+
+            # Create object in Model (store data in database table)
+            Form.objects.create(first_name=first_name, last_name=last_name,
+                                email=email, date=date, occupation=occupation)
 
     return render(request, "index.html")
